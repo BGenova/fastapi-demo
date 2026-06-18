@@ -6,3 +6,6 @@ email-validator
 python-jose[cryptography]
 python-multipart
 httpx
+openai
+python-dotenv
+mistralai
