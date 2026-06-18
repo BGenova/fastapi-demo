@@ -1,32 +1,5 @@
-from fastapi import FastAPI
-from pydantic import BaseModel, EmailStr
+import uvicorn
+from app.main import app
 
-class User(BaseModel):
-    name: str
-    email: EmailStr
-    age: int
-
-app = FastAPI()
-
-@app.get("/")
-def home():
-    return {"message": "Hello FastAPI"}
-
-@app.get("/users")
-def get_users():
-    return [
-        {"id": 1, "name": "John"},
-        {"id": 2, "name": "Jane"}
-    ]
-
-@app.get("/users/{user_id}")
-def get_user(user_id: int):
-    return {"id": user_id}
-
-@app.get("/search")
-def search(q: str):
-    return {"query": q}
-
-@app.post("/users")
-def create_user(user: User):
-    return user
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
